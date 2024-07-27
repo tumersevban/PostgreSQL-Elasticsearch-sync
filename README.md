@@ -23,6 +23,9 @@ Purpose of project is create synchronization between Elasticsearch and PostgreSQ
 
 ##### 3. Create ETL pipeline.
 
+##### 3. Install JDBC driver for PostgreSQl
+You need to install jdbc driver from [here. ](https://jdbc.postgresql.org/download/) 
+
 ##### 4. Run it.
 
 ##### 5. Check the Elasticsearch side.
