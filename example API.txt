@@ -1,0 +1,66 @@
+GET city/_search
+GET city/_search
+{
+  "query": {
+    "match": {
+      "name": "Cambridge"
+    }
+  }
+}
+
+GET city/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name.keyword": "Cambridge"
+          }
+        },
+        {
+          "range": {
+            "population": {
+              "gte": 110000
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+
+GET city/_search?size=0
+{
+  "aggs": {
+    "city_names": {
+      "terms": {
+        "field": "name.keyword",
+        "size": 10
+      }
+    }
+  }
+}
+
+GET city/_search
+{
+  "query": {
+    "wildcard": {
+      "name.keyword": "Cam*"
+    }
+  }
+}
+
+##curl form
+
+curl -u elastic:1q2w3e --cacert /tmp/ca.crt -XGET "https://localhost:9200/city/_search?pretty" -H 'Content-Type: application/json' -d'
+{
+  "query": {
+    "match": {
+      "name": "Cambridge"
+    }
+  }
+}'
+
+Note: you can create custom API Kibana => Dev Tools
+http://localhost:5601/app/dev_tools#/console
